@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  mariadb:
+    image: mariadb:latest 
+    container_name: mariadb 
+    environment:
+      MYSQL_DATABASE: iawe 
+      MYSQL_USER: christian 
+      MYSQL_PASSWORD: barcelona22 
+      MYSQL_ROOT_PASSWORD: toor 
+    ports:
+      - "3306:3306" 
+    restart: always 
+    
+  web:
+    image: php:7.4-apache  
+    container_name: php 
+    ports: 
+      - "8080:80" 
+    volumes:
+      - ./:/var/www/html
+    links:
+      - mariadb 
